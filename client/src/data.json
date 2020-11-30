@@ -1,0 +1,64 @@
+{
+  "gender": "female",
+  "name": { "title": "Ms", "first": "Victoria", "last": "Howell" },
+  "medication": [
+    {
+      "id": 82341214,
+      "name": "Tubersol Max",
+      "dosage": 5,
+      "type": "pill",
+      "taken": true,
+      "duration": 30,
+      "duration_unit": "days",
+      "morning": true,
+      "afternoon": false,
+      "evening": false,
+      "with_food": true
+    },
+    {
+      "id": 12342214,
+      "name": "Ibrupofen",
+      "dosage": 2,
+      "type": "tablet",
+      "taken": false,
+      "duration": 30,
+      "duration_unit": "days",
+      "morning": true,
+      "afternoon": false,
+      "evening": false,
+      "with_food": true
+    },
+    {
+      "id": 92323514,
+      "name": "Nalaxone",
+      "dosage": 3,
+      "type": "pill",
+      "taken": false,
+      "duration": 15,
+      "duration_unit": "days",
+      "morning": false,
+      "afternoon": true,
+      "evening": false,
+      "with_food": true
+    },
+    {
+      "id": 82341114,
+      "name": "Aspirin",
+      "dosage": 2,
+      "type": "tablet",
+      "taken": false,
+      "duration": 30,
+      "duration_unit": "days",
+      "morning": false,
+      "afternoon": false,
+      "evening": true,
+      "with_food": false
+    }
+  ],
+  "info": {
+    "seed": "75b2d7ac368de2d7",
+    "results": 1,
+    "page": 1,
+    "version": "1.3"
+  }
+}
