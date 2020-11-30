@@ -1,5 +1,8 @@
 import React from "react";
 import "./MedicationList.css";
+import sun from "./sun.png";
+import sunrise from "./sunrise.png";
+import night from "./night.png";
 
 function MedicationList(props) {
   const medication = props.medication;
@@ -27,20 +30,19 @@ function MedicationList(props) {
       <section>
         <header>
           <h2>Morning</h2>
+          <img src={sunrise} alt="Logo" />
         </header>
         <ul>
           {morning.map((item) => {
             return (
               <li key={item.id}>
                 <h3>{`${item.name} ${item.dosage_size} ${item.dosage_unit}`}</h3>
-                <p>
+                <article>
                   <span>{`${item.dosage} ${item.type}`}</span>
-                </p>
-                <p>
                   <span>{`${
                     item.taken === true ? "Taken" : "Not taken"
                   }`}</span>
-                </p>
+                </article>
               </li>
             );
           })}
@@ -49,20 +51,19 @@ function MedicationList(props) {
       <section>
         <header>
           <h2>Afternoon</h2>
+          <img src={sun} alt="Logo" />
         </header>
         <ul>
           {afternoon.map((item) => {
             return (
               <li key={item.id}>
                 <h3>{`${item.name} ${item.dosage_size} ${item.dosage_unit}`}</h3>
-                <p>
+                <article>
                   <span>{`${item.dosage} ${item.type}`}</span>
-                </p>
-                <p>
                   <span>{`${
                     item.taken === true ? "Taken" : "Not taken"
                   }`}</span>
-                </p>
+                </article>
               </li>
             );
           })}
@@ -71,20 +72,19 @@ function MedicationList(props) {
       <section>
         <header>
           <h2>Evening</h2>
+          <img src={night} alt="Logo" />
         </header>
         <ul>
           {evening.map((item) => {
             return (
               <li key={item.id}>
                 <h3>{`${item.name} ${item.dosage_size} ${item.dosage_unit}`}</h3>
-                <p>
+                <article>
                   <span>{`${item.dosage} ${item.type}`}</span>
-                </p>
-                <p>
                   <span>{`${
                     item.taken === true ? "Taken" : "Not taken"
                   }`}</span>
-                </p>
+                </article>
               </li>
             );
           })}
