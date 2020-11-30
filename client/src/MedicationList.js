@@ -1,4 +1,5 @@
 import React from "react";
+import "./MedicationList.css";
 
 function MedicationList(props) {
   const medication = props.medication;
@@ -22,7 +23,7 @@ function MedicationList(props) {
   console.log(evening);
 
   return (
-    <>
+    <div className="time--container">
       <section>
         <header>
           <h2>Morning</h2>
@@ -30,11 +31,15 @@ function MedicationList(props) {
         <ul>
           {morning.map((item) => {
             return (
-              <li>
-                <h3>{item.name}</h3>
+              <li key={item.id}>
+                <h3>{`${item.name} ${item.dosage_size} ${item.dosage_unit}`}</h3>
                 <p>
-                  <span>{item.dosage}</span>
-                  <span>{item.type}</span>
+                  <span>{`${item.dosage} ${item.type}`}</span>
+                </p>
+                <p>
+                  <span>{`${
+                    item.taken === true ? "Taken" : "Not taken"
+                  }`}</span>
                 </p>
               </li>
             );
@@ -48,11 +53,15 @@ function MedicationList(props) {
         <ul>
           {afternoon.map((item) => {
             return (
-              <li>
-                <h3>{item.name}</h3>
+              <li key={item.id}>
+                <h3>{`${item.name} ${item.dosage_size} ${item.dosage_unit}`}</h3>
                 <p>
-                  <span>{item.dosage}</span>
-                  <span>{item.type}</span>
+                  <span>{`${item.dosage} ${item.type}`}</span>
+                </p>
+                <p>
+                  <span>{`${
+                    item.taken === true ? "Taken" : "Not taken"
+                  }`}</span>
                 </p>
               </li>
             );
@@ -66,18 +75,22 @@ function MedicationList(props) {
         <ul>
           {evening.map((item) => {
             return (
-              <li>
-                <h3>{item.name}</h3>
+              <li key={item.id}>
+                <h3>{`${item.name} ${item.dosage_size} ${item.dosage_unit}`}</h3>
                 <p>
-                  <span>{item.dosage}</span>
-                  <span>{item.type}</span>
+                  <span>{`${item.dosage} ${item.type}`}</span>
+                </p>
+                <p>
+                  <span>{`${
+                    item.taken === true ? "Taken" : "Not taken"
+                  }`}</span>
                 </p>
               </li>
             );
           })}
         </ul>
       </section>
-    </>
+    </div>
   );
 }
 

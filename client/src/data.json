@@ -5,6 +5,8 @@
     {
       "id": 82341214,
       "name": "Tubersol Max",
+      "dosage_size": 80,
+      "dosage_unit": "mg",
       "dosage": 5,
       "type": "pill",
       "taken": true,
@@ -18,6 +20,8 @@
     {
       "id": 12342214,
       "name": "Ibrupofen",
+      "dosage_size": 400,
+      "dosage_unit": "mg",
       "dosage": 2,
       "type": "tablet",
       "taken": false,
@@ -31,6 +35,8 @@
     {
       "id": 92323514,
       "name": "Nalaxone",
+      "dosage_size": 300,
+      "dosage_unit": "mg",
       "dosage": 3,
       "type": "pill",
       "taken": false,
@@ -44,6 +50,8 @@
     {
       "id": 82341114,
       "name": "Aspirin",
+      "dosage_size": 100,
+      "dosage_unit": "mg",
       "dosage": 2,
       "type": "tablet",
       "taken": false,
