@@ -19,7 +19,6 @@ class App extends React.Component {
         console.log(data);
         this.setState({ user_data: data, isLoading: false });
       })
-      //.then((user_data) => this.setState({ user_data: user_data, }))
       .catch((err) => console.log(err));
   }
 
