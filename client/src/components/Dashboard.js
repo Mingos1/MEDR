@@ -1,7 +1,7 @@
 import React from "react";
 import data from "./data.json";
-import MedicationList from "./components/MedicationList";
-import Navigation from "./components/Navigation";
+import MedicationList from "./MedicationList";
+import Navigation from "./Navigation";
 
 class Dashboard extends React.Component {
   constructor() {
@@ -49,3 +49,5 @@ class Dashboard extends React.Component {
     }
   }
 }
+
+export default Dashboard;
