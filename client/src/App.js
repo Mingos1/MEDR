@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
-// import data from "./data.json";
-import MedicationList from "./MedicationList";
+import data from "./data.json";
+import MedicationList from "./components/MedicationList";
+import Navigation from "./components/Navigation";
 
 class App extends React.Component {
   constructor() {
@@ -13,14 +14,18 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("/users")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        this.setState({ user_data: data, isLoading: false });
-      })
-      .catch((err) => console.log(err));
+    this.setState({ user_data: data, isLoading: false });
   }
+
+  // componentDidMount() {
+  //   fetch("/users")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       this.setState({ user_data: data, isLoading: false });
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
 
   render() {
     const { user_data, isLoading } = this.state;
@@ -37,9 +42,7 @@ class App extends React.Component {
     } else {
       return (
         <>
-          <header>
-            <h2>{Date()}</h2>
-          </header>
+          <Navigation user_data={user_data} />
           <MedicationList medication={medication} />
         </>
       );

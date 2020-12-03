@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+:root {
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  color: var(--black);
+  --primary-color: #f7accf;
+  --secondary-color: #003f91;
+  --accent-color: #55dde0;
+  --urgent-color: #f26419;
+  --cool-yellow: #f6ae2d;
+  --loco-pick: #f564a9;
+  --black: #2d2d2a;
+  --white: #ffffff;
+  --grey: #e4ecf1;
+  --label-color: #1c364a;
+  --button-color: #4a8fe7;
+}
+
+.nav--item-input {
+  padding: 0 1em;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 75%;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  height: 20px;
+  margin: 1em;
+  border-radius: 4px;
+  border: 1px solid var(--black);
+  color: rgba(45, 45, 45, 0.8);
+  font-weight: 500;
+}
+input:active,
+input:hover,
+input:focus {
+  border: 2px solid var(--button-color);
+  color: rgba(45, 45, 45, 0.8);
+}
+
+.input--button {
+  padding: 12px 20px;
+}
+
+.pen {
+  padding-right: 10px;
+  font-size: 1.3rem;
+}
+
+.nav--words {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.nav--button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: var(--button-color);
+  border: none;
+  color: var(--white);
+}
+
+.nav--button:hover {
+  color: var(--loco-pick);
+  background-color: var(--white);
+  color: var(--button-color);
+  border: 2px solid var(--button-color);
+}
+
+.nav--button:active {
+  background-color: var(--loco-pick);
+  color: var(--white);
+  border: none;
+}
+
+.nav--button-user {
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 1.5rem;
+}
+
+.nav--item-user {
+  padding: 0.5em 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav--item-user > * {
+  margin: 0 0.3em;
+}
+
+.logo {
+  font-family: "Oswald", sans-serif;
+  font-size: 3rem;
+  color: var(--loco-pick);
+}
+
+.nav--wrapper {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  background-color: var(--white);
+  margin: 20px 0;
+  padding: 0.3em 0.8em;
+}
+
+.nav--container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin: 0.2em 0;
+}
+
+.nav--container:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 0.2em 0;
+}
+
+.nav--words-username {
+  font-weight: 700;
+  color: var(--loco-pick);
+}

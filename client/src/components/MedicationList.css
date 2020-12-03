@@ -1,0 +1,199 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+:root {
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  color: var(--black);
+  --primary-color: #f7accf;
+  --secondary-color: #003f91;
+  --accent-color: #55dde0;
+  --urgent-color: #f26419;
+  --cool-yellow: #f6ae2d;
+  --loco-pick: #f564a9;
+  --black: #2d2d2a;
+  --white: #ffffff;
+  --grey: #e4ecf1;
+  --label-color: #1c364a;
+}
+
+body {
+  background-color: #ebf0fc;
+  padding: 0 50px;
+}
+
+.labels {
+  margin-bottom: 4px;
+  color: var(--label-color);
+  font-size: 0.9rem;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: 600;
+
+  max-width: 100px;
+  margin: 0.1em 0;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0;
+  font-size: 1.5rem;
+  padding: 0 70px;
+  color: var(--loco-pick);
+}
+.time--wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-flow: wrap;
+}
+
+.time--container-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 2em 0 2.5em 0;
+  padding: 0.8em 1em;
+  border-radius: 4px;
+}
+
+#morning {
+  background-color: var(--accent-color);
+}
+
+#afternoon {
+  background-color: var(--cool-yellow);
+}
+
+#evening {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+.time--container-header div {
+  margin: 0 20px;
+}
+
+.time--container {
+  background-color: rgb(255, 255, 255, 0.9);
+  margin: 0.8em 1em;
+  padding: 1em;
+  border-radius: 4px;
+}
+.edit-button {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--urgent-color);
+  cursor: pointer;
+}
+
+.edit-button:active {
+  font-size: 1.6rem;
+  color: var(--accent-color);
+  cursor: pointer;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.li--wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+
+  padding: 20px;
+
+  border-radius: 4px;
+  width: 300px;
+  margin-bottom: 1em;
+  border: 1px solid var(--accent-color);
+  box-shadow: 2px 3px 1px var(--grey);
+}
+
+.li--wrapper:hover {
+  box-shadow: 2px 10px 10px var(--grey);
+}
+
+.li--container {
+  display: flex;
+  padding: 2px 0;
+  margin: 5px 0;
+  justify-content: space-between;
+
+  align-items: flex-start;
+}
+
+.taken-button {
+  align-self: center;
+  font-weight: 700;
+  padding: 0.9em;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: var(--white);
+}
+
+.taken-button:hover {
+  box-shadow: 2px 3px 1px var(--grey);
+}
+
+.taken-button:active {
+  background-color: var(--grey);
+}
+
+#taken {
+  color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 4px;
+}
+
+#taken:active {
+  color: var(--white);
+  background-color: var(--accent-color);
+}
+
+#taken::after {
+  content: " 😀👍";
+}
+
+#not-taken {
+  color: var(--urgent-color);
+  border: 2px solid var(--urgent-color);
+}
+
+#not-taken::after {
+  content: " 😡";
+}
+
+#not-taken:active {
+  color: var(--white);
+  background-color: var(--urgent-color);
+}
+
+#box--taken {
+  border-color: var(--accent-color);
+}
+
+#box--not-taken {
+  border-color: var(--cool-yellow);
+}
