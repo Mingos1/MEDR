@@ -10,7 +10,7 @@ import Home from "./routes/home/home";
 ReactDOM.render(
   <div>
     <BrowserRouter>
-      <Route path="/" component={Home} />
+      <Route path="/" exact={true} component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       {/* <Route path="/user" /> */}
