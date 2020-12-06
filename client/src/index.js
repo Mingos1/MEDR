@@ -4,7 +4,7 @@ import { Route, BrowserRouter } from "react-router-dom";
 
 import Login from "./routes/login/login";
 import Register from "./routes/register/register.js";
-// import Dashboard from "./components/Dashboard";
+import Dashboard from "./routes/main/index";
 import Home from "./routes/home/home";
 
 ReactDOM.render(
@@ -13,7 +13,7 @@ ReactDOM.render(
       <Route path="/" exact={true} component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
-      {/* <Route path="/user" /> */}
+      <Route path="/user" component={Dashboard} />
     </BrowserRouter>
   </div>,
   document.getElementById("root")

@@ -31,3 +31,4 @@ Ever forgot to take your medications? Ever wanted to have one place to keep trac
 - [ ] Setup/test cloud database connection
 - [ ] Get modals for medication add
 - [ ] Refactor client code
+- [] Make the app work Offline

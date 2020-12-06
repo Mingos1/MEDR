@@ -1,7 +1,7 @@
 import React from "react";
 import data from "./data.json";
-import MedicationList from "../routes/main/MedicationList";
-import Navigation from "../routes/main/Navigation";
+import MedicationList from "./components/MedicationList";
+import Navigation from "./components/Navigation";
 
 class Dashboard extends React.Component {
   constructor() {
