@@ -1,7 +1,7 @@
 require("dotenv").config({ path: __dirname + "/.env" });
-const { Pool } = require("pg");
+let { Pool } = require("pg");
 
-const Pool = new Pool({
+let pool = new Pool({
   user: process.env.PGUSER,
   host: process.env.PGHOST,
   database: process.env.DATABASE,

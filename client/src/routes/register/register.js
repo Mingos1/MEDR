@@ -49,9 +49,9 @@ const Register = () => {
       <header>
         <h2>Register</h2>
       </header>
-      <form onSubmit={handleSubmit}>
+      <form className="form--wrapper register" onSubmit={handleSubmit}>
         <section>
-          <div>
+          <div className="form-field--wrapper">
             <label for="">Username</label>
             <input
               type="text"
@@ -61,7 +61,7 @@ const Register = () => {
               value={values.username}
             />
           </div>
-          <div>
+          <div className="form-field--wrapper">
             <label for="">Password</label>
             <input
               type="password"
@@ -71,7 +71,7 @@ const Register = () => {
               value={values.password}
             />
           </div>
-          <div>
+          <div className="form-field--wrapper">
             <label for="">Email</label>
             <input
               type="text"
@@ -81,7 +81,7 @@ const Register = () => {
               value={values.email}
             />
           </div>
-          <div>
+          <div className="form-field--wrapper">
             <button type="submit">Register</button>
           </div>
         </section>

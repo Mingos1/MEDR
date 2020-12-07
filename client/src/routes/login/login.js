@@ -8,7 +8,7 @@ const Login = () => {
     email: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [setSubmitted] = useState(false);
 
   // Handlers
   const handlePaswordInputChange = (event) => {
@@ -38,7 +38,7 @@ const Login = () => {
       <header>
         <h2>Login</h2>
       </header>
-      <form onSubmit={handleSubmit}>
+      <form className="form--wrapper login" onSubmit={handleSubmit}>
         <section>
           <div>
             <label for="">Email</label>
