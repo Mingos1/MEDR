@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MedicationList.css";
 import sun from "./images/sun.png";
 import sunrise from "./images/sunrise.png";
 import night from "./images/night.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+import Modal from "react-modal";
 
-function Title() {
+function SectionTitle() {
   return (
     <>
       <header className="title">
@@ -19,7 +20,72 @@ function Title() {
   );
 }
 
+const customStyles = {
+  content: {
+    top: "50%",
+    bottom: "50%",
+    left: "50%",
+    right: "50%",
+    height: "400px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    backgroundColor: "rgba(255,255,255, 0.3)",
+  },
+  overlay: {},
+};
+
 const MedicationBox = (props) => {
+  Modal.setAppElement();
+  var subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [values, setValues] = useState({
+    username: "",
+    password: "",
+    email: "",
+  });
+
+  const [setSubmitted] = useState(false);
+
+  // Handlers
+  const handlePaswordInputChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      password: event.target.value,
+    }));
+  };
+
+  const handleEmailInputChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      email: event.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    console.log(values);
+  };
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "rgba(255,255,255, 0.3";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return props.list.map((item) => {
     return (
       <li
@@ -28,18 +94,62 @@ const MedicationBox = (props) => {
         id={`${item.taken === true ? "box--taken" : "box--not-taken"}`}
       >
         <div className="li--container">
-          <div classname="li--item">
+          <div className="li--item">
             <h5 className="labels">Medication Name</h5>
             <h3>{`${item.name} ${item.dosage_size} ${item.dosage_unit}`}</h3>
           </div>
           <div classname="li--item">
-            <button className="edit-button" id="modal-button">
+            <button
+              className="edit-button"
+              id="modal-button"
+              onClick={openModal}
+            >
               <FontAwesomeIcon icon={faEllipsisV} />
             </button>
+            <Modal
+              isOpen={modalIsOpen}
+              onAfterOpen={afterOpenModal}
+              onRequestClose={closeModal}
+              style={customStyles}
+              contentLabel="Example Modal"
+            >
+              <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+
+              <header>
+                <button onClick={closeModal}>close</button>
+              </header>
+              <form onSubmit={handleSubmit}>
+                <section>
+                  <div>
+                    <label for="">Email</label>
+                    <input
+                      type="text"
+                      name="email"
+                      placeholder="Email"
+                      onChange={handleEmailInputChange}
+                      value={values.email}
+                    />
+                  </div>
+                  <div>
+                    <label for="">Password</label>
+                    <input
+                      type="password"
+                      name="password"
+                      onChange={handlePaswordInputChange}
+                      placeholder={item.name}
+                      value={values.password}
+                    />
+                  </div>
+                  <div>
+                    <button type="submit">Login</button>
+                  </div>
+                </section>
+              </form>
+            </Modal>
           </div>
         </div>
         <article className="li--container">
-          <div classname="li--item">
+          <div className="li--item">
             <h5 className="labels">Amount</h5>
             <h4>{`${item.dosage} ${
               item.dosage > 1 ? item.type + "s" : item.type
@@ -88,34 +198,9 @@ function MedicationList(props) {
   console.log(afternoon);
   console.log(evening);
 
-  // var modal = document.getElementById("myModal");
-
-  // // Get the button that opens the modal
-  // var btn = document.getElementById("modal-button");
-
-  // // Get the <span> element that closes the modal
-  // var span = document.getElementsByClassName("close")[0];
-
-  // // When the user clicks on the button, open the modal
-  // btn.onclick = function () {
-  //   modal.style.display = "block";
-  // };
-
-  // // When the user clicks on <span> (x), close the modal
-  // span.onclick = function () {
-  //   modal.style.display = "none";
-  // };
-
-  // // When the user clicks anywhere outside of the modal, close it
-  // window.onclick = function (event) {
-  //   if (event.target === modal) {
-  //     modal.style.display = "none";
-  //   }
-  // };
-
   return (
     <>
-      <Title />
+      <SectionTitle />
       <div className="time--wrapper">
         <section className="time--container">
           <header className="time--container-header" id="morning">
