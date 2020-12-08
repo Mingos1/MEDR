@@ -1,7 +1,7 @@
 require("dotenv").config({ path: __dirname + "/.env" });
-let { Pool } = require("pg");
+const Pool = require("pg").Pool;
 
-let pool = new Pool({
+const pool = new Pool({
   user: process.env.PGUSER,
   host: process.env.PGHOST,
   database: process.env.DATABASE,
@@ -9,4 +9,4 @@ let pool = new Pool({
   port: process.env.PGPORT,
 });
 
-module.exports;
+module.exports = pool;

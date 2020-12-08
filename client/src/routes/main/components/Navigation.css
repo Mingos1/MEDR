@@ -61,6 +61,7 @@ input:focus {
 }
 
 .nav--button {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,7 +99,7 @@ input:focus {
 }
 
 .nav--item-user > * {
-  margin: 0 0.3em;
+  padding: 6px;
 }
 
 .logo {
@@ -109,7 +110,7 @@ input:focus {
 
 .nav--wrapper {
   display: grid;
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 10% 70%;
   background-color: var(--white);
   margin: 20px 0;
   padding: 0.3em 0.8em;

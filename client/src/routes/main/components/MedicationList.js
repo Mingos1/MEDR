@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./MedicationList.css";
 import sun from "./images/sun.png";
 import sunrise from "./images/sunrise.png";
@@ -54,7 +54,7 @@ const MedicationBox = (props) => {
             <button
               className="taken-button"
               id={`${item.taken === true ? "taken" : "not-taken"}`}
-              onClick={`Set taken server call`}
+              onClick={`Server update for toggle takens`}
             >{`${item.taken === true ? "Taken" : "Not taken"}`}</button>
           </div>
         </article>

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const pool = require("./db");
+const pool = require("../db");
 
 // Test
 router.get("/", (req, res) => {
@@ -82,7 +82,7 @@ router.post("/user/userprofiletodb", (req, res, next) => {
 
 // login as a user (read) - Change email to uid
 
-router.get("/user/get/userprofilefromdb", (req, res, next) => {
+router.get("/:user/get/userprofilefromdb", (req, res, next) => {
   const email = req.query.email;
   console.log();
   pool.query(`SELECT * FROM users WHERE email=$1`, [email], (q_err, q_res) => {
@@ -91,7 +91,7 @@ router.get("/user/get/userprofilefromdb", (req, res, next) => {
 });
 
 // get user medications
-router.get("/user/get/usermed", (req, res, next) => {
+router.get("/:user/get/usermed", (req, res, next) => {
   const user_id = req.query.user_id;
   console.log(user_id);
   pool.query(

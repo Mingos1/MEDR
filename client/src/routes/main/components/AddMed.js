@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 const AddMed = (props) => {
-  // console.log(props.medication);
-  const medication = props.medication;
   Modal.setAppElement();
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -16,9 +14,8 @@ const AddMed = (props) => {
     dosage_unit: String,
     dosage: Number,
     type: String,
-    taken: Boolean,
     duration: Number,
-    duration_unit: String,
+    duration_unit: "day",
     morning: Boolean,
     afternoon: Boolean,
     evening: Boolean,
@@ -108,9 +105,15 @@ const AddMed = (props) => {
 
   return (
     <>
-      <button className="edit-button" id="modal-button" onClick={openModal}>
-        <FontAwesomeIcon icon={faEllipsisV} />
+      <button
+        className="nav--button input--button"
+        id="modal-button"
+        onClick={openModal}
+      >
+        <FontAwesomeIcon icon={faPen} className="icon pen " />
+        <h3 className="nav--words">Add!</h3>
       </button>
+
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -120,7 +123,7 @@ const AddMed = (props) => {
         contentLabel="Example Modal"
       >
         <header className="modal--header">
-          <h2>Edit your med</h2>
+          <h2>Add a Med</h2>
         </header>
         <form onSubmit={handleSubmit}>
           <section>
@@ -130,19 +133,14 @@ const AddMed = (props) => {
                 <input
                   type="text"
                   name="medication-name"
-                  placeholder={medication.name}
                   onChange={handleMedicationInputChange}
                   value={values.name}
+                  required
                 />
               </div>
               <div className="modal--inline-item">
                 <label for="">Medication type</label>
-                <select
-                  id="medicationType"
-                  name="type"
-                  defaultValue={medication.type}
-                  onChange={``}
-                >
+                <select id="medicationType" name="type" onChange={``} required>
                   <option value="pill">Pill</option>
                   <option value="caplet">Caplet</option>
                   <option value="tablet">Tablet</option>
@@ -156,9 +154,17 @@ const AddMed = (props) => {
                 <input
                   type="number"
                   name="dosage"
-                  placeholder={medication.dosage}
                   onChange={handleDosageInputChange}
                   value={values.dosage}
+                />
+              </div>
+              <div className="modal--inline-item">
+                <label for="">Days till next refill?</label>
+                <input
+                  type="number"
+                  name="dosage"
+                  onChange={handleDurationInputChange}
+                  value={values.duration}
                 />
               </div>
               <div className="modal--inline-item">
@@ -167,8 +173,8 @@ const AddMed = (props) => {
                   type="number"
                   name="dosageAmount"
                   onChange={handleDosageSizeInputChange}
-                  placeholder={medication.dosage_size}
                   value={values.dosage_size}
+                  required
                 />
               </div>
               <div className="modal--inline-item">
@@ -177,7 +183,7 @@ const AddMed = (props) => {
                   id="dosageStrength"
                   name="dosageStrength"
                   onChange={handleDosageUnitInputChange}
-                  defaultValue={medication.dosage_unit}
+                  required
                 >
                   <option value="mg">milligram(mg)</option>
                   <option value="g">gram(g)</option>
@@ -197,7 +203,6 @@ const AddMed = (props) => {
                 <label>Morning</label>
                 <input
                   type="checkbox"
-                  defaultChecked={medication.morning ? true : false}
                   onChange={handleMorningCheckChange}
                 ></input>
               </div>
@@ -205,7 +210,6 @@ const AddMed = (props) => {
                 <label>Afternoon</label>
                 <input
                   type="checkbox"
-                  defaultChecked={medication.afternoon ? true : false}
                   onChange={handleAfternonCheckChange}
                 ></input>
               </div>
@@ -214,7 +218,6 @@ const AddMed = (props) => {
                 <input
                   type="checkbox"
                   onChange={handleEveningCheckChange}
-                  defaultChecked={medication.evening ? true : false}
                   value={``}
                 ></input>
               </div>

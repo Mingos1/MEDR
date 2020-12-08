@@ -19,8 +19,6 @@ Ever forgot to take your medications? Ever wanted to have one place to keep trac
 - MongoDB (Development/Testing)
 - Mongoose (Development/Testing)
 - PostgreSQL
-- Prisma
-- Amazon AWS
 
 ## Todo
 
