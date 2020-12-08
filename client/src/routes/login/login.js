@@ -8,7 +8,7 @@ const Login = () => {
     email: "",
   });
 
-  const [setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   // Handlers
   const handlePaswordInputChange = (event) => {

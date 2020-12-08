@@ -38,7 +38,7 @@
       "id": 92323514,
       "name": "Nalaxone",
       "dosage_size": 300,
-      "dosage_unit": "mg",
+      "dosage_unit": "kg",
       "dosage": 3,
       "type": "pill",
       "taken": false,

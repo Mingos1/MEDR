@@ -12,7 +12,6 @@ function Navigation(props) {
       </section>
       <section className="nav--container">
         <div className="nav--item nav--item-input">
-          <input placeholder="Add new medication" />
           <button className="nav--button input--button">
             <FontAwesomeIcon icon={faPen} className="icon pen" />
             <h3 className="nav--words">Add!</h3>
@@ -25,6 +24,9 @@ function Navigation(props) {
           <h3 className="nav--words nav--words-username">
             {user_name.username}
           </h3>
+          <button className="nav--button input--button">
+            <h3 className="nav--words">Logout!</h3>
+          </button>
         </div>
       </section>
     </nav>

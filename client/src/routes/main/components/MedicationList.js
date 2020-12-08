@@ -3,9 +3,7 @@ import "./MedicationList.css";
 import sun from "./images/sun.png";
 import sunrise from "./images/sunrise.png";
 import night from "./images/night.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
-import Modal from "react-modal";
+import EditMed from "./EditMed";
 
 function SectionTitle() {
   return (
@@ -20,72 +18,7 @@ function SectionTitle() {
   );
 }
 
-const customStyles = {
-  content: {
-    top: "50%",
-    bottom: "50%",
-    left: "50%",
-    right: "50%",
-    height: "400px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    backgroundColor: "rgba(255,255,255, 0.3)",
-  },
-  overlay: {},
-};
-
 const MedicationBox = (props) => {
-  Modal.setAppElement();
-  var subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [values, setValues] = useState({
-    username: "",
-    password: "",
-    email: "",
-  });
-
-  const [setSubmitted] = useState(false);
-
-  // Handlers
-  const handlePaswordInputChange = (event) => {
-    event.persist();
-    setValues((values) => ({
-      ...values,
-      password: event.target.value,
-    }));
-  };
-
-  const handleEmailInputChange = (event) => {
-    event.persist();
-    setValues((values) => ({
-      ...values,
-      email: event.target.value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    console.log(values);
-  };
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = "rgba(255,255,255, 0.3";
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
   return props.list.map((item) => {
     return (
       <li
@@ -99,53 +32,7 @@ const MedicationBox = (props) => {
             <h3>{`${item.name} ${item.dosage_size} ${item.dosage_unit}`}</h3>
           </div>
           <div classname="li--item">
-            <button
-              className="edit-button"
-              id="modal-button"
-              onClick={openModal}
-            >
-              <FontAwesomeIcon icon={faEllipsisV} />
-            </button>
-            <Modal
-              isOpen={modalIsOpen}
-              onAfterOpen={afterOpenModal}
-              onRequestClose={closeModal}
-              style={customStyles}
-              contentLabel="Example Modal"
-            >
-              <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-
-              <header>
-                <button onClick={closeModal}>close</button>
-              </header>
-              <form onSubmit={handleSubmit}>
-                <section>
-                  <div>
-                    <label for="">Email</label>
-                    <input
-                      type="text"
-                      name="email"
-                      placeholder="Email"
-                      onChange={handleEmailInputChange}
-                      value={values.email}
-                    />
-                  </div>
-                  <div>
-                    <label for="">Password</label>
-                    <input
-                      type="password"
-                      name="password"
-                      onChange={handlePaswordInputChange}
-                      placeholder={item.name}
-                      value={values.password}
-                    />
-                  </div>
-                  <div>
-                    <button type="submit">Login</button>
-                  </div>
-                </section>
-              </form>
-            </Modal>
+            <EditMed medication={item} />
           </div>
         </div>
         <article className="li--container">
@@ -167,6 +54,7 @@ const MedicationBox = (props) => {
             <button
               className="taken-button"
               id={`${item.taken === true ? "taken" : "not-taken"}`}
+              onClick={`Set taken server call`}
             >{`${item.taken === true ? "Taken" : "Not taken"}`}</button>
           </div>
         </article>
@@ -194,9 +82,9 @@ function MedicationList(props) {
     }
   });
 
-  console.log(morning);
-  console.log(afternoon);
-  console.log(evening);
+  // console.log(morning);
+  // console.log(afternoon);
+  // console.log(evening);
 
   return (
     <>
