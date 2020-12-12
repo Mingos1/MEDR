@@ -11,9 +11,12 @@ CREATE TABLE users (
     last_login TIMESTAMP
 )
 
-CREATE TABLE medication (
-    medication_id SERIAL PRIMARY KEY,
-    medication_name VARCHAR(255),
+CREATE TABLE medications (
+    med_id SERIAL,
+    user_id UUID,
+    PRIMARY KEY (med_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    medication_name VARCHAR(255) NOT NULL,
     dosage_size INT,
     dosage_unit VARCHAR,   
     dosage INT,
@@ -24,7 +27,6 @@ CREATE TABLE medication (
     morning BOOLEAN,   
     afternoon BOOLEAN,
     evening BOOLEAN,
-    user_medication VARCHAR REFERENCES users(username),
     date_created TIMESTAMP,
     last_update TIMESTAMP
 )
@@ -32,3 +34,6 @@ CREATE TABLE medication (
 -- Fake users
 
 INSERT INTO users(user_name, user_password, user_email) VALUES ('john boy', 'kitty123', 'jboy@gmail.com')
+
+
+-- INSERT INTO users(med_id, user_name, user_password, user_email) VALUES ('john boy', 'kitty123', 'jboy@gmail.com')

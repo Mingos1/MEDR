@@ -11,31 +11,17 @@ const Register = () => {
     email: "",
   });
 
+  const { email, password, username } = values;
+
   const [submitted, setSubmitted] = useState(false);
 
   // Handlers
-  const handleUsernameInputChange = (event) => {
-    event.persist();
-    setValues((values) => ({
-      ...values,
-      username: event.target.value,
-    }));
-  };
 
-  const handlePaswordInputChange = (event) => {
-    event.persist();
-    setValues((values) => ({
+  const onChange = (e) => {
+    setValues({
       ...values,
-      password: event.target.value,
-    }));
-  };
-
-  const handleEmailInputChange = (event) => {
-    event.persist();
-    setValues((values) => ({
-      ...values,
-      email: event.target.value,
-    }));
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = (e) => {
@@ -55,10 +41,10 @@ const Register = () => {
             <label for="">Username</label>
             <input
               type="text"
-              name="username"
-              placeholder="Username"
-              onChange={handleUsernameInputChange}
-              value={values.username}
+              name="name"
+              placeholder="name"
+              onChange={onChange}
+              value={values.name}
             />
           </div>
           <div className="form-field--wrapper">
@@ -67,7 +53,7 @@ const Register = () => {
               type="password"
               name="password"
               placeholder="Password"
-              onChange={handlePaswordInputChange}
+              onChange={onChange}
               value={values.password}
             />
           </div>
@@ -77,7 +63,7 @@ const Register = () => {
               type="text"
               name="email"
               placeholder="Email"
-              onChange={handleEmailInputChange}
+              onChange={onChange}
               value={values.email}
             />
           </div>

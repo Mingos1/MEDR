@@ -23,6 +23,10 @@ const indexRouter = require("./routes/routes");
 
 // login and register routes
 app.use("/auth", require("./routes/authRoute"));
+// Dash route
+
+app.use("/dashboard", require("./routes/dashboard"));
+
 //  other routes
 app.use("/", indexRouter);
 

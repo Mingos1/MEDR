@@ -1,23 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { Route, BrowserRouter } from "react-router-dom";
+import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
 
 import Login from "./routes/login/login";
 import Register from "./routes/register/register.js";
 import Dashboard from "./routes/main/index";
 import Home from "./routes/home/home";
 
-ReactDOM.render(
-  <div>
-    <BrowserRouter>
-      <Route path="/" exact={true} component={Home} />
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
-      <Route path="/user" component={Dashboard} />
-    </BrowserRouter>
-  </div>,
-  document.getElementById("root")
-);
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  return (
+    <div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route
+            exact
+            path="/login"
+            render={(props) =>
+              !isAuthenticated ? <Login {...props} /> : <Redirect to="/user" />
+            }
+          />
+          <Route
+            exact
+            path="/register"
+            render={(props) =>
+              !isAuthenticated ? (
+                <Register {...props} />
+              ) : (
+                <Redirect to="/user" />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/user"
+            render={(props) =>
+              isAuthenticated ? (
+                <Dashboard {...props} />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
+          />
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
