@@ -55,7 +55,7 @@ router.post("/login", validInfo, async (req, res) => {
     ]);
 
     if (user.rows.length === 0) {
-      return res.status(401).json("Password or email is incorrect");
+      return res.status(401).json("Password or email is incorrect.rows length");
     }
     // check if incoming password is the same as db password
 
@@ -64,11 +64,15 @@ router.post("/login", validInfo, async (req, res) => {
       user.rows[0].user_password
     );
 
-    if (!validPassword)
-      return res.status(401).json("Password or email is incorrect");
+    if (!validPassword) {
+      return res
+        .status(401)
+        .json("Password or email is incorrect. invalid pass");
+    }
 
     // Get token
     const token = jwtGenerator(user.rows[0].user_id);
+
     res.json({ token });
   } catch (err) {
     console.error(err.message);

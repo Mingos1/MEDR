@@ -3,17 +3,15 @@ import "./styles.css";
 // import { Formik } from "formik";
 // import * as Yup from "yup";
 
-const Register = () => {
+const Register = ({ setAuth }) => {
   // Hooks
   const [values, setValues] = useState({
-    username: "",
+    name: "",
     password: "",
     email: "",
   });
 
-  const { email, password, username } = values;
-
-  const [submitted, setSubmitted] = useState(false);
+  const { email, password, name } = values;
 
   // Handlers
 
@@ -24,10 +22,30 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    console.log(values);
+
+    try {
+      const body = { email, password, name };
+      const response = await fetch("http://localhost:5000/auth/register", {
+        method: "POST",
+        headers: { "content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      const parseRes = await response.json();
+
+      console.log(parseRes);
+
+      if (parseRes.token !== undefined) {
+        localStorage.setItem("token", parseRes.token);
+        setAuth(true);
+      } else {
+        setAuth(false);
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   return (
@@ -38,35 +56,36 @@ const Register = () => {
       <form className="form--wrapper register" onSubmit={handleSubmit}>
         <section>
           <div className="form-field--wrapper">
-            <label for="">Username</label>
-            <input
-              type="text"
-              name="name"
-              placeholder="name"
-              onChange={onChange}
-              value={values.name}
-            />
-          </div>
-          <div className="form-field--wrapper">
-            <label for="">Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={onChange}
-              value={values.password}
-            />
-          </div>
-          <div className="form-field--wrapper">
-            <label for="">Email</label>
+            <label for="email">Email</label>
             <input
               type="text"
               name="email"
               placeholder="Email"
               onChange={onChange}
-              value={values.email}
+              value={email}
             />
           </div>
+          <div className="form-field--wrapper">
+            <label for="name">Username</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="username"
+              onChange={onChange}
+              value={name}
+            />
+          </div>
+          <div className="form-field--wrapper">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={onChange}
+              value={password}
+            />
+          </div>
+
           <div className="form-field--wrapper">
             <button type="submit">Register</button>
           </div>

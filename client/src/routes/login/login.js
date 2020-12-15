@@ -1,36 +1,51 @@
 import React, { useState } from "react";
 
-const Login = () => {
+const Login = ({ setAuth }) => {
   // Hooks
   const [values, setValues] = useState({
-    username: "",
     password: "",
     email: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const { email, password } = values;
 
   // Handlers
-  const handlePaswordInputChange = (event) => {
-    event.persist();
-    setValues((values) => ({
+
+  const onChange = (e) => {
+    setValues({
       ...values,
-      password: event.target.value,
-    }));
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handleEmailInputChange = (event) => {
-    event.persist();
-    setValues((values) => ({
-      ...values,
-      email: event.target.value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    console.log(values);
+    // setSubmitted(true);
+    const body = { email, password };
+
+    try {
+      const response = await fetch("http://localhost:5000/auth/login", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      const parseRes = await response.json();
+
+      console.log(parseRes);
+      console.log(body);
+
+      if (parseRes.token !== undefined) {
+        localStorage.setItem("token", parseRes.token);
+        setAuth(true);
+      } else {
+        setAuth(false);
+      }
+
+      //setAuth(true);
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   return (
@@ -41,23 +56,23 @@ const Login = () => {
       <form className="form--wrapper login" onSubmit={handleSubmit}>
         <section>
           <div>
-            <label for="">Email</label>
+            <label for="email">Email</label>
             <input
               type="text"
               name="email"
-              placeholder="Email"
-              onChange={handleEmailInputChange}
-              value={values.email}
+              placeholder="email"
+              onChange={onChange}
+              value={email}
             />
           </div>
           <div>
-            <label for="">Password</label>
+            <label for="password">Password</label>
             <input
               type="password"
               name="password"
               placeholder="Password"
-              onChange={handlePaswordInputChange}
-              value={values.password}
+              onChange={onChange}
+              value={password}
             />
           </div>
           <div>

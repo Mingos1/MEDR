@@ -9,6 +9,9 @@ import Home from "./routes/home/home";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const setAuth = (Boolean) => {
+    setIsAuthenticated(Boolean);
+  };
 
   return (
     <div>
@@ -19,7 +22,11 @@ const App = () => {
             exact
             path="/login"
             render={(props) =>
-              !isAuthenticated ? <Login {...props} /> : <Redirect to="/user" />
+              !isAuthenticated ? (
+                <Login {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/user" />
+              )
             }
           />
           <Route
@@ -27,7 +34,7 @@ const App = () => {
             path="/register"
             render={(props) =>
               !isAuthenticated ? (
-                <Register {...props} />
+                <Register {...props} setAuth={setAuth} />
               ) : (
                 <Redirect to="/user" />
               )
@@ -38,7 +45,7 @@ const App = () => {
             path="/user"
             render={(props) =>
               isAuthenticated ? (
-                <Dashboard {...props} />
+                <Dashboard {...props} setAuth={setAuth} />
               ) : (
                 <Redirect to="/login" />
               )
