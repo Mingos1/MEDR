@@ -15,4 +15,6 @@ router.get("/", authorize, async (req, res) => {
   }
 });
 
+router.get("/", authorize, async (req, res) => {});
+
 module.exports = router;

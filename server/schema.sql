@@ -35,5 +35,19 @@ CREATE TABLE medications (
 
 INSERT INTO users(user_name, user_password, user_email) VALUES ('john boy', 'kitty123', 'jboy@gmail.com')
 
+-- fake meds
 
--- INSERT INTO users(med_id, user_name, user_password, user_email) VALUES ('john boy', 'kitty123', 'jboy@gmail.com')
+INSERT INTO medications(med_id, user_id, medication_name, dosage_size, 
+                        dosage_unit, dosage, medication_type, 
+                        taken, duration, duration_unit,morning, 
+                        afternoon, evening) values (1, '862a2782-1bc7-49c8-b16e-43b2f03266eb',
+                       'Tubersol Max', 80, 'mg', 5, 'pill', 
+                        true, 0,'day', true, false, false);
+
+INSERT INTO medications(med_id, user_id, medication_name, dosage_size, 
+                        dosage_unit, dosage, medication_type, 
+                        taken, duration, duration_unit,morning, 
+                        afternoon, evening) values (2, '862a2782-1bc7-49c8-b16e-43b2f03266eb',
+                       'Aspirin', 400, 'mg', 1, 'pill', 
+                        false, 12,'day', true, false, true);
+                        

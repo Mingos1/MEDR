@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+// import axios from "axios";
 
 const Home = () => {
-  useEffect(() => {
-    axios.get("/api/hello").then((res) => setState(res.data));
-  }, []);
+  // const [state, setState] = useState("");
 
-  const [state, setState] = useState("");
+  // useEffect(() => {
+  //   axios.get("/api/hello").then((res) => setState(res.data));
+  // }, []);
 
   return (
     <>
       <h1>HOME</h1>
-      <p>{state}</p>
+      <a href="http://localhost:3000/login">
+        <button>Login</button>
+      </a>
+      <a href="http://localhost:3000/register">
+        <button>Register</button>
+      </a>
     </>
   );
 };
