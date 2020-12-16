@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
-
+import { ChakraProvider } from "@chakra-ui/react";
+// routes
 import Login from "./routes/login/login";
 import Register from "./routes/register/register.js";
 import Dashboard from "./routes/main/index";
@@ -34,7 +35,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <ChakraProvider>
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -73,7 +74,7 @@ const App = () => {
           />
         </Switch>
       </BrowserRouter>
-    </div>
+    </ChakraProvider>
   );
 };
 

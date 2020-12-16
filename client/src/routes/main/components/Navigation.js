@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faPen } from "@fortawesome/free-solid-svg-icons";
 
 function Navigation(props) {
-  const user_name = props.user_data;
+  // const user_name = props.user_data;
   return (
     <nav className="nav--wrapper">
       <section className="nav--container">
