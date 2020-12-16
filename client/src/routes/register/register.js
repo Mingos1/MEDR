@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import {
+  FormControl,
+  Input,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Button,
+} from "@chakra-ui/react";
+
 import "./styles.css";
 // import { Formik } from "formik";
 // import * as Yup from "yup";
@@ -55,39 +64,42 @@ const Register = ({ setAuth }) => {
       </header>
       <form className="form--wrapper register" onSubmit={handleSubmit}>
         <section>
-          <div className="form-field--wrapper">
-            <label for="email">Email</label>
-            <input
+          <FormControl>
+            <FormLabel for="name">Username</FormLabel>
+            <Input
+              type="text"
+              name="name"
+              placeholder="Username"
+              onChange={onChange}
+              value={name}
+            />
+          </FormControl>
+
+          <FormControl id="email">
+            <FormLabel for="email">Email</FormLabel>
+            <Input
               type="text"
               name="email"
               placeholder="Email"
               onChange={onChange}
               value={email}
             />
-          </div>
-          <div className="form-field--wrapper">
-            <label for="name">Username</label>
-            <input
-              type="text"
-              name="name"
-              placeholder="username"
-              onChange={onChange}
-              value={name}
-            />
-          </div>
-          <div className="form-field--wrapper">
-            <label for="password">Password</label>
-            <input
+          </FormControl>
+          <FormControl>
+            <FormLabel for="password">Password</FormLabel>
+            <Input
               type="password"
               name="password"
               placeholder="Password"
               onChange={onChange}
               value={password}
             />
-          </div>
+          </FormControl>
 
           <div className="form-field--wrapper">
-            <button type="submit">Register</button>
+            <Button mt={4} colorScheme="teal" type="submit">
+              Register
+            </Button>
           </div>
         </section>
       </form>

@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import {
+  FormControl,
+  Input,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Button,
+  Header,
+} from "@chakra-ui/react";
 
 const Login = ({ setAuth }) => {
   // Hooks
@@ -50,35 +59,40 @@ const Login = ({ setAuth }) => {
 
   return (
     <>
-      <header>
-        <h2>Login</h2>
-      </header>
       <form className="form--wrapper login" onSubmit={handleSubmit}>
-        <section>
-          <div>
-            <label for="email">Email</label>
-            <input
-              type="text"
-              name="email"
-              placeholder="email"
-              onChange={onChange}
-              value={email}
-            />
-          </div>
-          <div>
-            <label for="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={onChange}
-              value={password}
-            />
-          </div>
-          <div>
-            <button type="submit">Login</button>
-          </div>
-        </section>
+        <header>
+          <h2>Login</h2>
+        </header>
+
+        <FormControl id="email">
+          <FormLabel for="email">Email</FormLabel>
+          <Input
+            variant="outline"
+            size="md"
+            type="text"
+            name="email"
+            placeholder="email"
+            onChange={onChange}
+            value={email}
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel for="password">Password</FormLabel>
+          <Input
+            variant="outline"
+            size="md"
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={onChange}
+            value={password}
+          />
+        </FormControl>
+        <div className="form-field--wrapper">
+          <Button mt={4} colorScheme="pink" type="submit">
+            Login
+          </Button>
+        </div>
       </form>
     </>
   );
