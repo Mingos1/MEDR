@@ -19,7 +19,7 @@ router.post("/register", validInfo, async (req, res) => {
       return res.status(401).send("User already exists.");
     }
 
-    // Encrpt the password
+    // Encrypt the password
 
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);
@@ -44,7 +44,7 @@ router.post("/register", validInfo, async (req, res) => {
 
 router.post("/login", validInfo, async (req, res) => {
   try {
-    // destructure the req.body
+    // structure the req.body
 
     const { email, password } = req.body;
 

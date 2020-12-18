@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { ChakraProvider } from "@chakra-ui/react";
-// import data from "./data.json";
-// import MedicationList from "./components/MedicationList";
+import { Flex, Menu, Box } from "@chakra-ui/react";
+import data from "./data.json";
+import MedicationList from "./components/MedicationList";
 // import Navigation from "./components/Navigation";
 import "./components/Navigation.css";
 import AddMed from "./components/AddMed";
@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faPen } from "@fortawesome/free-solid-svg-icons";
 
 const Dashboard = ({ setAuth }) => {
-  // const [values, setValues] = useState({ data });
+  const [medication, setMedication] = useState([]);
   const [name, setName] = useState("");
 
   async function getName() {
@@ -26,6 +26,23 @@ const Dashboard = ({ setAuth }) => {
     }
   }
 
+  async function getMed() {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/dashboard/medication",
+        {
+          method: "GET",
+          headers: { token: localStorage.token },
+        }
+      );
+      const parseRes = await response.json();
+      console.log(parseRes);
+      setMedication(parseRes);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
   const logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
@@ -36,36 +53,56 @@ const Dashboard = ({ setAuth }) => {
     getName();
   }, []);
 
-  // const userData = values.data;
-  // const medication = userData.medication;
-  // console.log(medication);
+  useEffect(() => {
+    getMed();
+  }, []);
 
   return (
     <>
-      <nav>
-        <section>
+      <Flex
+        as="nav"
+        align="center"
+        justify="space-between"
+        wrap="wrap"
+        w="100%"
+        mb={3}
+        p={3}
+        borderColor="black"
+        borderWidth="3px"
+      >
+        <Flex align="center" borderColor="black" borderWidth="3px">
           <h2 className="logo">medr.</h2>
-        </section>
-        <section>
-          <div>
-            <AddMed />
-            {/* <button className="nav--button input--button">
+        </Flex>
+        <Menu>
+          <Box width="50%" borderColor="black" borderWidth="3px">
+            <Flex
+              align={["center", "center", "center", "center"]}
+              justify={["center", "space-between", "flex-end", "flex-end"]}
+              direction={["column", "row", "row", "row"]}
+              pt={[4, 4, 0, 0]}
+            >
+              <AddMed />
+              {/* <button className="nav--button input--button">
               <FontAwesomeIcon icon={faPen} className="icon pen" />
               <h3 className="nav--words">Delete!</h3>
             </button> */}
-          </div>
-          <div>
-            <FontAwesomeIcon icon={faUser} />
-            <h3>{name}</h3>
-            <button onClick={(e) => logout(e)}>
-              <h3>Logout</h3>
-            </button>
-          </div>
-        </section>
-      </nav>
+
+              <Box>
+                <Flex pt="30px" align="space-between" direction="row">
+                  <FontAwesomeIcon icon={faUser} />
+                  <h3>{name}</h3>
+                  <button onClick={(e) => logout(e)}>
+                    <h3>Logout</h3>
+                  </button>
+                </Flex>
+              </Box>
+            </Flex>
+          </Box>
+        </Menu>
+      </Flex>
 
       {/* <Navigation user_data={userData} /> */}
-      {/* <MedicationList medication={medication} /> */}
+      <MedicationList medication={medication} />
     </>
   );
 };

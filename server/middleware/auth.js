@@ -13,9 +13,8 @@ module.exports = function (req, res, next) {
 
     req.user = payload.id;
     console.log(req.user);
-
     next();
   } catch (err) {
-    return res.status(401).json({ msg: "Error detected" });
+    return res.status(401).json({ msg: "Server error" });
   }
 };
