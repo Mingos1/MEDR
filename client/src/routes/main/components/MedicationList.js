@@ -5,6 +5,10 @@ import sunrise from "./images/sunrise.png";
 import night from "./images/night.png";
 import EditMed from "./EditMed";
 
+// TODO: Add "Add" and "Edit" functions to the modals
+// TODO: minor. Fix formatting on dashboard page components
+// TODO: Implement refresh token
+
 function SectionTitle() {
   return (
     <>
