@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Menu, Box } from "@chakra-ui/react";
-import data from "./data.json";
+import {
+  Flex,
+  Menu,
+  Box,
+  Button,
+  Text,
+  Wrap,
+  Avatar,
+  Center,
+} from "@chakra-ui/react";
+// import data from "./data.json";
 import MedicationList from "./components/MedicationList";
 // import Navigation from "./components/Navigation";
 import "./components/Navigation.css";
@@ -60,45 +69,35 @@ const Dashboard = ({ setAuth }) => {
   return (
     <>
       <Flex
-        as="nav"
-        align="center"
-        justify="space-between"
+        backgroundColor="white"
+        borderRadius="4px"
+        justifyContent="space-between"
+        alignItems="center"
         wrap="wrap"
         w="100%"
-        mb={3}
-        p={3}
-        borderColor="black"
-        borderWidth="3px"
+        px={5}
+        py={4}
+        // borderColor="black"
+        // borderWidth="3px"
       >
-        <Flex align="center" borderColor="black" borderWidth="3px">
+        <Flex align="center">
           <h2 className="logo">medr.</h2>
         </Flex>
-        <Menu>
-          <Box width="50%" borderColor="black" borderWidth="3px">
-            <Flex
-              align={["center", "center", "center", "center"]}
-              justify={["center", "space-between", "flex-end", "flex-end"]}
-              direction={["column", "row", "row", "row"]}
-              pt={[4, 4, 0, 0]}
-            >
-              <AddMed />
-              {/* <button className="nav--button input--button">
-              <FontAwesomeIcon icon={faPen} className="icon pen" />
-              <h3 className="nav--words">Delete!</h3>
-            </button> */}
-
-              <Box>
-                <Flex pt="30px" align="space-between" direction="row">
-                  <FontAwesomeIcon icon={faUser} />
-                  <h3>{name}</h3>
-                  <button onClick={(e) => logout(e)}>
-                    <h3>Logout</h3>
-                  </button>
-                </Flex>
-              </Box>
-            </Flex>
+        <Box margin={2}>
+          <AddMed />
+        </Box>
+        <Flex align="flex-end" justifyContent="space-around">
+          <Box margin={2}>
+            <Text fontSize="lg" fontWeight="600">
+              {name}
+            </Text>
           </Box>
-        </Menu>
+          <Box margin={2}>
+            <Button backgroundColor="skyblue" onClick={(e) => logout(e)}>
+              <h3>Logout</h3>
+            </Button>
+          </Box>
+        </Flex>
       </Flex>
 
       {/* <Navigation user_data={userData} /> */}
