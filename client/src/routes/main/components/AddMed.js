@@ -27,7 +27,6 @@ export default function AddMed() {
   // Hooks
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [submitted, setSubmitted] = useState(false);
-  const [checked, setChecked] = useState(false);
 
   // values
   const [values, setValues] = useState({
@@ -67,12 +66,6 @@ export default function AddMed() {
       [name]: value,
     });
   };
-
-  const handleToggle = (e) => {
-    setChecked(!checked);
-  };
-
-  console.log(checked);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -117,7 +110,7 @@ export default function AddMed() {
               </FormControl>
 
               <FormControl>
-                <FormLabel>How many should you take?</FormLabel>
+                <FormLabel>How many should you take per day?</FormLabel>
                 <NumberInput
                   min={0}
                   onChange={(e) => {
@@ -200,27 +193,42 @@ export default function AddMed() {
 
               <FormControl>
                 <FormLabel>When do you take it?</FormLabel>
-                <CheckboxGroup colorScheme="green">
-                  <HStack>
-                    <Checkbox defaultValue={morning} onChange={handleChange}>
-                      Morning
-                    </Checkbox>
-                    <Checkbox
-                      defaultValue={checked}
-                      checked={handleToggle}
-                      name="afternoon"
-                    >
-                      Afternoon
-                    </Checkbox>
-                    <Checkbox
-                      defaultValue={checked}
-                      onChange={handleToggle}
-                      value={checked}
-                    >
-                      Evening
-                    </Checkbox>
-                  </HStack>
-                </CheckboxGroup>
+              </FormControl>
+
+              <FormControl mb={3}>
+                <FormLabel>Morning?</FormLabel>
+                <Select
+                  name="morning"
+                  placeholder="Select an option"
+                  onChange={handleChange}
+                >
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </Select>
+              </FormControl>
+
+              <FormControl mb={3}>
+                <FormLabel>Afternoon?</FormLabel>
+                <Select
+                  name="afternoon"
+                  placeholder="Select an option"
+                  onChange={handleChange}
+                >
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </Select>
+              </FormControl>
+
+              <FormControl mb={3}>
+                <FormLabel>Evening?</FormLabel>
+                <Select
+                  name="evening"
+                  placeholder="Select an option"
+                  onChange={handleChange}
+                >
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </Select>
               </FormControl>
             </ModalBody>
 
