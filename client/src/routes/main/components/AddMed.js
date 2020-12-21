@@ -18,9 +18,6 @@ import {
   NumberIncrementStepper,
   NumberInputStepper,
   NumberInput,
-  HStack,
-  Checkbox,
-  CheckboxGroup,
 } from "@chakra-ui/react";
 
 export default function AddMed() {
@@ -67,10 +64,47 @@ export default function AddMed() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
     console.log(values);
+
+    const body = {
+      name,
+      dosage_size,
+      dosage_unit,
+      dosage,
+      type,
+      duration,
+      duration_unit,
+      morning,
+      afternoon,
+      evening,
+    };
+
+    try {
+      const response = await fetch("http://localhost:5000/auth/login", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      const parseRes = await response.json();
+
+      console.log(parseRes);
+      console.log(body);
+
+      if (parseRes.token !== undefined) {
+        localStorage.setItem("token", parseRes.token);
+        setAuth(true);
+      } else {
+        setAuth(false);
+      }
+
+      //setAuth(true);
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   return (
@@ -202,8 +236,8 @@ export default function AddMed() {
                   placeholder="Select an option"
                   onChange={handleChange}
                 >
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
+                  <option value={true}>Yes</option>
+                  <option value={false}>No</option>
                 </Select>
               </FormControl>
 
@@ -214,8 +248,8 @@ export default function AddMed() {
                   placeholder="Select an option"
                   onChange={handleChange}
                 >
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
+                  <option value={true}>Yes</option>
+                  <option value={false}>No</option>
                 </Select>
               </FormControl>
 
@@ -226,8 +260,8 @@ export default function AddMed() {
                   placeholder="Select an option"
                   onChange={handleChange}
                 >
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
+                  <option value={true}>Yes</option>
+                  <option value={false}>No</option>
                 </Select>
               </FormControl>
             </ModalBody>

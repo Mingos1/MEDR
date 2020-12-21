@@ -60,7 +60,7 @@ const MedicationBox = (props) => {
             <button
               className="taken-button"
               id={`${item.taken === true ? "taken" : "not-taken"}`}
-              onClick={`Server update for toggle taken`}
+              // onClick={`Server update for toggle taken`}
             >{`${item.taken === true ? "Taken" : "Not taken"}`}</button>
           </div>
         </article>
