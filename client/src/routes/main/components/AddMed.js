@@ -20,19 +20,24 @@ import {
   NumberInput,
 } from "@chakra-ui/react";
 
-export default function AddMed() {
+export default function AddMed(props) {
+  // ! Add "add medication success/failure" feature
+  // props
+  let user_id = props.user_id;
   // Hooks
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [submitted, setSubmitted] = useState(false);
 
   // values
   const [values, setValues] = useState({
+    med_id: Date.now(),
     name: "",
     dosage_size: 0,
     dosage_unit: "",
     dosage: 0,
-    type: "",
+    medication_type: "",
     duration: 0,
+    taken: false,
     duration_unit: "day",
     morning: false,
     afternoon: false,
@@ -40,11 +45,13 @@ export default function AddMed() {
   });
 
   let {
+    med_id,
     name,
+    taken,
     dosage_size,
     dosage_unit,
     dosage,
-    type,
+    medication_type,
     duration,
     duration_unit,
     morning,
@@ -66,15 +73,20 @@ export default function AddMed() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setSubmitted(true);
+
     console.log(values);
 
     const body = {
+      med_id,
+      user_id,
       name,
+      taken,
       dosage_size,
       dosage_unit,
       dosage,
-      type,
+      medication_type,
       duration,
       duration_unit,
       morning,
@@ -83,23 +95,26 @@ export default function AddMed() {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/auth/login", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        "http://localhost:5000/dashboard/medication",
+        {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
 
       const parseRes = await response.json();
 
       console.log(parseRes);
       console.log(body);
 
-      if (parseRes.token !== undefined) {
-        localStorage.setItem("token", parseRes.token);
-        setAuth(true);
-      } else {
-        setAuth(false);
-      }
+      // if (parseRes.token !== undefined) {
+      //   localStorage.setItem("token", parseRes.token);
+      //   setAuth(true);
+      // } else {
+      //   setAuth(false);
+      // }
 
       //setAuth(true);
     } catch (err) {
@@ -132,7 +147,7 @@ export default function AddMed() {
               <FormControl mb={3}>
                 <FormLabel>Medication Type</FormLabel>
                 <Select
-                  name="type"
+                  name="medication_type"
                   placeholder="Select type"
                   onChange={handleChange}
                 >
@@ -278,129 +293,3 @@ export default function AddMed() {
     </div>
   );
 }
-
-//   // Handlers
-//   // const onChange = (e) => {
-//   //   setValues({
-//   //     ...values,
-//   //     [e.target.name]: e.target.value,
-//   //   });
-//   // };
-//     className="nav--button input--button"
-//     id="modal-button"
-//     onClick={openModal}
-//   >
-//     <FontAwesomeIcon icon={faPen} className="icon pen " />
-//     <h3 className="nav--words">Add!</h3>
-//   </button>
-
-//   <Modal
-//     isOpen={modalIsOpen}
-//     onAfterOpen={afterOpenModal}
-//     onRequestClose={closeModal}
-//     className="modal--wrapper"
-//     overlayClassName="modal--overlay"
-//     contentLabel="Example Modal"
-//   >
-//     <header className="modal--header">
-//       <h2>Add a Med</h2>
-//     </header>
-//     <form onSubmit={handleSubmit}>
-//       <section>
-//         <div className="modal--inline">
-//           <div className="modal--inline-item">
-//             <label for="">Medication Name</label>
-//             <input
-//               type="text"
-//               name="medication-name"
-//               onChange={onChange}
-//               value={name}
-//               required
-//             />
-//           </div>
-//           <div className="modal--inline-item">
-//             <label for="">Medication type</label>
-//             <select id="medicationType" name="type" onChange={``} required>
-//               <option value="pill">Pill</option>
-//               <option value="caplet">Caplet</option>
-//               <option value="tablet">Tablet</option>
-//               <option value="shot">Shot</option>
-//             </select>
-//           </div>
-//         </div>
-//         <div className="modal--inline">
-//           <div className="modal--inline-item">
-//             <label for="">Times per day?</label>
-//             <input
-//               type="number"
-//               name="dosage"
-//               onChange={onChange}
-//               value={dosage}
-//             />
-//           </div>
-//           <div className="modal--inline-item">
-//             <label for="">Days till next refill?</label>
-//             <input
-//               type="number"
-//               name="dosage"
-//               onChange={onChange}
-//               value={duration}
-//             />
-//           </div>
-//           <div className="modal--inline-item">
-//             <label for="">Dosage</label>
-//             <input
-//               type="number"
-//               name="dosageAmount"
-//               onChange={onChange}
-//               value={dosage_size}
-//               required
-//             />
-//           </div>
-//           <div className="modal--inline-item">
-//             <label for="dosageStrength">Dosage Strength</label>
-//             <select
-//               id="dosageStrength"
-//               name="dosageStrength"
-//               onChange={onChange}
-//               required
-//             >
-//               <option value="mg">milligram(mg)</option>
-//               <option value="g">gram(g)</option>
-//               <option value="kg">kilogram(kg)</option>
-//               <option value="mcg">microgram(mcg)</option>
-//               <option value="L">liter(L)</option>
-//               <option value="ml">millilitre(ml)</option>
-//               <option value="cc">cubic centimeter(cc)</option>
-//               <option value="m">mole(mol)</option>
-//               <option value="mmol">millimole(mmol)</option>
-//             </select>
-//           </div>
-//         </div>
-
-//         <section className="modal--inline">
-//           <div class="switch modal--inline-item">
-//             <label>Morning</label>
-//             <input type="checkbox" onChange={onChange}></input>
-//           </div>
-//           <div class="switch modal--inline-item">
-//             <label>Afternoon</label>
-//             <input type="checkbox" onChange={onChange}></input>
-//           </div>
-//           <div class="switch modal--inline-item">
-//             <label>Evening</label>
-//             <input type="checkbox" onChange={onChange} value={``}></input>
-//           </div>
-//         </section>
-//       </section>
-
-//       <div class="modal--footer">
-//         <button type="submit" className="save-button">
-//           Save changes
-//         </button>
-//         <button className="close-button" onClick={closeModal}>
-//           close
-//         </button>
-//       </div>
-//     </form>
-//   </Modal>

@@ -17,10 +17,12 @@ import AddMed from "./components/AddMed";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faPen } from "@fortawesome/free-solid-svg-icons";
+import { parse } from "@fortawesome/fontawesome-svg-core";
 
 const Dashboard = ({ setAuth }) => {
   const [medication, setMedication] = useState([]);
   const [name, setName] = useState("");
+  const [userId, setUserId] = useState("");
 
   async function getName() {
     try {
@@ -30,6 +32,7 @@ const Dashboard = ({ setAuth }) => {
       });
       const parseRes = await response.json();
       setName(parseRes.user_name);
+      setUserId(parseRes.user_id);
     } catch (err) {
       console.error(err.message);
     }
@@ -84,7 +87,7 @@ const Dashboard = ({ setAuth }) => {
           <h2 className="logo">medr.</h2>
         </Flex>
         <Box margin={2}>
-          <AddMed />
+          <AddMed user_id={userId} />
         </Box>
         <Flex align="flex-end" justifyContent="space-around">
           <Box margin={2}>

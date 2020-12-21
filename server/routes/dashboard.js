@@ -30,23 +30,43 @@ router.get("/medication", authorize, async (req, res) => {
 });
 
 //! not done - fix query formatting
-router.post("/medication", authorize, async (req, res) => {
+router.post("/medication", async (req, res) => {
   try {
-    const addMedication = await pool.query(
-      "INSERT INTO medications (name, user_email, user_password) VALUES ($1,$2,$3) RETURNING *",
-      [name, email, bcryptPassword]
-      "INSERT INTO medications(med_id, user_id, medication_name, dosage_size, 
-        dosage_unit, dosage, medication_type, 
-        taken, duration, duration_unit,morning, 
-        afternoon, evening) values ", [1, '862a2782-1bc7-49c8-b16e-43b2f03266eb',
-       'Tubersol Max', 80, 'mg', 5, 'pill', 
-        true, 0,'day', true, false, false];
-    );
+    const {
+      med_id,
+      user_id,
+      name,
+      dosage_size,
+      dosage_unit,
+      dosage,
+      medication_type,
+      taken,
+      duration,
+      duration_unit,
+      morning,
+      afternoon,
+      evening,
+    } = req.body;
+
     const medication = await pool.query(
-      "SELECT * FROM medications WHERE user_id = $1",
-      [req.user]
+      "INSERT INTO medications (med_id, user_id, medication_name, dosage_size, dosage_unit, dosage, medication_type, taken, duration, duration_unit, morning, afternoon, evening) VALUES ($1,$2,$3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)",
+      [
+        med_id,
+        user_id,
+        name,
+        dosage_size,
+        dosage_unit,
+        dosage,
+        medication_type,
+        taken,
+        duration,
+        duration_unit,
+        morning,
+        afternoon,
+        evening,
+      ]
     );
-    res.status(200).json(medication.rows);
+    res.status(200).json({ msg: "Added to database" });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
