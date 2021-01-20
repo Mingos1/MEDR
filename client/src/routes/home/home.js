@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Button,
   Grid,
@@ -8,15 +9,8 @@ import {
   Center,
   Heading,
 } from "@chakra-ui/react";
-// import axios from "axios";
 
 const Home = () => {
-  // const [state, setState] = useState("");
-
-  // useEffect(() => {
-  //   axios.get("/api/hello").then((res) => setState(res.data));
-  // }, []);
-
   return (
     <>
       <Grid

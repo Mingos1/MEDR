@@ -68,14 +68,6 @@ const EditMed = (props) => {
     }));
   };
 
-  // const handleDurationInputChange = (event) => {
-  //   event.persist();
-  //   setValues((values) => ({
-  //     ...values,
-  //     duration: event.target.value,
-  //   }));
-  // };
-
   const handleMorningCheckChange = (event) => {
     event.persist();
     setValues((values) => ({

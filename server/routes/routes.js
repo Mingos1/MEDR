@@ -2,11 +2,6 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../db");
 
-// // Test
-// router.get("/", (req, res) => {
-//   res.json("Hello world");
-// });
-
 //  Medication CRUD
 //!not done Add medication
 router.post("user/post/medtodb", (req, res, next) => {

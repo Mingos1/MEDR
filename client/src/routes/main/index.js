@@ -9,17 +9,13 @@ import {
   Avatar,
   Center,
 } from "@chakra-ui/react";
-// import data from "./data.json";
+
 import MedicationList from "./components/MedicationList";
-// import Navigation from "./components/Navigation";
 import "./components/Navigation.css";
 import AddMed from "./components/AddMed";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faPen } from "@fortawesome/free-solid-svg-icons";
-import { parse } from "@fortawesome/fontawesome-svg-core";
-
 const Dashboard = ({ setAuth }) => {
+
   const [medication, setMedication] = useState([]);
   const [name, setName] = useState("");
   const [userId, setUserId] = useState("");
@@ -46,29 +42,29 @@ const Dashboard = ({ setAuth }) => {
           method: "GET",
           headers: { token: localStorage.token },
         }
-      );
-      const parseRes = await response.json();
-      console.log(parseRes);
+        );
+        const parseRes = await response.json();
+        console.log(parseRes);
       setMedication(parseRes);
     } catch (err) {
       console.error(err.message);
     }
   }
+  
+  useEffect(() => {
+    getName();
+  }, []);
+  
+  useEffect(() => {
+    getMed();
+  }, []);
 
   const logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
     setAuth(false);
   };
-
-  useEffect(() => {
-    getName();
-  }, []);
-
-  useEffect(() => {
-    getMed();
-  }, []);
-
+  
   return (
     <>
       <Flex
@@ -80,8 +76,7 @@ const Dashboard = ({ setAuth }) => {
         w="100%"
         px={5}
         py={4}
-        // borderColor="black"
-        // borderWidth="3px"
+     
       >
         <Flex align="center">
           <h2 className="logo">medr.</h2>
@@ -102,8 +97,6 @@ const Dashboard = ({ setAuth }) => {
           </Box>
         </Flex>
       </Flex>
-
-      {/* <Navigation user_data={userData} /> */}
       <MedicationList medication={medication} />
     </>
   );

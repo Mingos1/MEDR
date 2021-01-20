@@ -7,10 +7,7 @@ import {
   FormHelperText,
   Button,
 } from "@chakra-ui/react";
-
 import "./styles.css";
-// import { Formik } from "formik";
-// import * as Yup from "yup";
 
 const Register = ({ setAuth }) => {
   // Hooks
