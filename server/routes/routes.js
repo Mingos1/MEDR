@@ -3,6 +3,8 @@ const router = express.Router();
 const pool = require("../db");
 
 //  Medication CRUD
+
+// TODO
 //!not done Add medication
 router.post("user/post/medtodb", (req, res, next) => {
   const values = [];
@@ -29,6 +31,7 @@ router.delete("/user/delete/med", (req, res, next) => {
   );
 });
 
+// TODO
 //!not done Update medication (Name, dosage, etc.)
 router.put("/user/put/updatemed", (req, res, next) => {
   const values = [];

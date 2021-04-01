@@ -56,15 +56,19 @@ npm start
 
 ## Todo
 
-- [x] Swap out MongoDB for PostgreSQL
-- [x] Can add medication
+- [] Add tests
+- [] Lint
+- [] Storybook components
 - [ ] Can delete medication
-- [x] App lists medication
 - [ ] Add session tokens
 - [ ] Figure out if privacy policy need
-- [x] Get modals for medication add and edit
 - [ ] Make the app work Offline
 - [ ] Deploy on Heroku/Netlify
+
+- [x] Swap out MongoDB for PostgreSQL
+- [x] Can add medication
+- [x] App lists medication
+- [x] Get modals for medication add and edit
 
 ### Contributing
 

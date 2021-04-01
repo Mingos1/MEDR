@@ -36,8 +36,11 @@ router.post("/register", validInfo, async (req, res) => {
     const token = jwtGenerator(newUser.rows[0].user_id);
 
     res.json({ token });
+  
   } catch (err) {
+    
     console.error(err.message);
+    
     res.status(500).send("Server error");
   }
 });

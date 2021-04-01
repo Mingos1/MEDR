@@ -1,45 +1,45 @@
-require("dotenv").config({ path: __dirname + "/.env" });
+require('dotenv').config({ path: `${__dirname}/.env` });
 
-const createError = require("http-errors");
-const express = require("express");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
-const logger = require("morgan");
-const cors = require("cors");
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
 const app = express();
 
 //  These have to be first in order for the routes to work!
 
 app.use(cors());
-app.use(logger("dev"));
+app.use(logger('dev'));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json()); // for parsing application/json in responses
+app.use(express.urlencoded({ extended: true }));
 
 // ROUTES
-const indexRouter = require("./routes/routes");
+const indexRouter = require('./routes/routes');
 
 // login and register routes
-app.use("/auth", require("./routes/authRoute"));
+app.use('/auth', require('./routes/authRoute'));
+
 // Dash route
+app.use('/dashboard', require('./routes/dashboard'));
 
-app.use("/dashboard", require("./routes/dashboard"));
+// Other routes
+app.use('/', indexRouter);
 
-//  other routes
-app.use("/", indexRouter);
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
+// Catch 404 and forward to error handler
+app.use((req, res, next) => {
   next(createError(404));
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
+// Error handler
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  // set locals, only provides an error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(500).json({
