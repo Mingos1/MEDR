@@ -1,6 +1,5 @@
 <!--!TODO: README needs edits-->
 <p align='center'>
-  
   <a href="#">
     <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />    
   </a>&nbsp;&nbsp;
@@ -25,19 +24,21 @@ Ever forgot to take your medications? Ever wanted to have one place to keep trac
 
 ### Getting Started/Requirements/Prerequisites/Dependencies
 
-Include any essential instructions for:
+### Spinning up the app
+#### Frontend
+```
+cd client
+npm install
+npm start
+```
 
-- Getting it
-- Installing It
-- Configuring It
-- Running it
+#### Backend
 
-### Contributing
-
-- Contributor Guidelines
-- Code Style/Requirements
-- Format for commit messages
-- Thank you (name contributors)
+```
+cd server
+npm install
+npm start
+```
 
 ## Tech
 
@@ -53,10 +54,10 @@ Include any essential instructions for:
 - MongoDB (Development/Testing)
 - Mongoose (Development/Testing)
 
-## TODO
+## Todo
 
 - [x] Swap out MongoDB for PostgreSQL
-- [ ] Can add medication
+- [x] Can add medication
 - [ ] Can delete medication
 - [x] App lists medication
 - [ ] Add session tokens
@@ -64,6 +65,13 @@ Include any essential instructions for:
 - [x] Get modals for medication add and edit
 - [ ] Make the app work Offline
 - [ ] Deploy on Heroku/Netlify
+
+### Contributing
+
+- Contributor Guidelines
+- Code Style/Requirements
+- Format for commit messages
+- Thank you (name contributors)
 
 ### License
 

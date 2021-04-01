@@ -21,14 +21,12 @@ import {
 } from "@chakra-ui/react";
 
 export default function AddMed(props) {
-  // ! Add "add medication success/failure" feature
-  // props
+
   let user_id = props.user_id;
-  // Hooks
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [submitted, setSubmitted] = useState(false);
 
-  // values
   const [values, setValues] = useState({
     med_id: Date.now(),
     name: "",
@@ -59,7 +57,6 @@ export default function AddMed(props) {
     evening,
   } = values;
 
-  // Handlers
   const handleChange = (e) => {
     const { target } = e;
     const value = target.type === "checkbox" ? target.checked : target.value;
@@ -109,14 +106,6 @@ export default function AddMed(props) {
       console.log(parseRes);
       console.log(body);
 
-      // if (parseRes.token !== undefined) {
-      //   localStorage.setItem("token", parseRes.token);
-      //   setAuth(true);
-      // } else {
-      //   setAuth(false);
-      // }
-
-      //setAuth(true);
     } catch (err) {
       console.error(err.message);
     }

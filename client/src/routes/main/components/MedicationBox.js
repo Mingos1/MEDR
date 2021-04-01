@@ -1,3 +1,5 @@
+import React from "react";
+import MedicationBoxMenu from "./MedicationBoxMenu"
 import EditMed from "./EditMed";
 
 export default function MedicationBox (props) {
@@ -14,6 +16,7 @@ export default function MedicationBox (props) {
             <h3>{`${item.medication_name} ${item.dosage_size} ${item.dosage_unit}`}</h3>
           </div>
           <div className="li--item">
+            <MedicationBoxMenu />
             <EditMed medication={item} />
           </div>
         </div>
