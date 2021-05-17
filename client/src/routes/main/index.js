@@ -1,29 +1,25 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable no-console */
+import React, { useState, useEffect } from 'react';
 import {
   Flex,
-  Menu,
   Box,
   Button,
   Text,
-  Wrap,
-  Avatar,
-  Center,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import MedicationList from "./components/MedicationList";
-import "./components/Navigation.css";
-import AddMed from "./components/AddMed";
+import MedicationList from './components/MedicationList';
+import './components/Navigation.css';
+import AddMed from './components/AddMed';
 
 const Dashboard = ({ setAuth }) => {
-
   const [medication, setMedication] = useState([]);
-  const [name, setName] = useState("");
-  const [userId, setUserId] = useState("");
+  const [name, setName] = useState('');
+  const [userId, setUserId] = useState('');
 
   async function getName() {
     try {
-      const response = await fetch("http://localhost:5000/dashboard/", {
-        method: "GET",
+      const response = await fetch('http://localhost:5000/dashboard/', {
+        method: 'GET',
         headers: { token: localStorage.token },
       });
       const parseRes = await response.json();
@@ -37,35 +33,36 @@ const Dashboard = ({ setAuth }) => {
   async function getMed() {
     try {
       const response = await fetch(
-        "http://localhost:5000/dashboard/medication",
+        'http://localhost:5000/dashboard/medication',
         {
-          method: "GET",
+          method: 'GET',
           headers: { token: localStorage.token },
-        }
-        );
-        const parseRes = await response.json();
-        console.log(parseRes);
+        },
+      );
+      const parseRes = await response.json();
+      console.log(parseRes);
       setMedication(parseRes);
     } catch (err) {
       console.error(err.message);
     }
   }
-  
+
   useEffect(() => {
     getName();
   }, []);
-  
+
   useEffect(() => {
     getMed();
   }, []);
 
   const logout = (e) => {
     e.preventDefault();
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     setAuth(false);
   };
-  
+
   return (
+    // eslint-disable-next-line react/jsx-filename-extension
     <>
       <Flex
         backgroundColor="white"
@@ -76,7 +73,7 @@ const Dashboard = ({ setAuth }) => {
         w="100%"
         px={5}
         py={4}
-     
+
       >
         <Flex align="center">
           <h2 className="logo">medr.</h2>

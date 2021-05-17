@@ -1,20 +1,19 @@
 require('dotenv').config({ path: `${__dirname}/.env` });
 
 const createError = require('http-errors');
-const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const app = express();
+const express = require('express');
 
-//  These have to be first in order for the routes to work!
+const app = express();
 
 app.use(cors());
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json()); // for parsing application/json in responses
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ROUTES
